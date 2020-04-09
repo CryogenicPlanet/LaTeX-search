@@ -1,5 +1,10 @@
 const CommandList = [
   {
+    command: '\\to',
+    example: '\\to',
+    descriptions: ['to', 'x approaches', 'right arrow'],
+  },
+  {
     command: '\\frac{}{}',
     example: '\\frac{a}{b}',
     descriptions: ['fraction', 'division'],
@@ -314,7 +319,7 @@ const CommandList = [
   },{
     command: '\\sim',
     example: '\\sim',
-    descriptions: ['similar'],
+    descriptions: ['similar', 'tilde'],
   },{
     command: '\\nsim',
     example: '\\nsim',
@@ -343,6 +348,14 @@ const CommandList = [
     command: '\\%',
     example: '\\%',
     descriptions: ['percentage', '%'],
+  }, {
+    command: '\\textit{}',
+    example: '\\textit{italics}',
+    descriptions: ['italics', 'textit', 'italicize'],
+  }, {
+    command: '\\hspace{1in}',
+    example: '\\hspace{1in}',
+    descriptions: ['empty space', 'hspace'],
   },
   {
     command: '\\textrm{}',
@@ -350,13 +363,13 @@ const CommandList = [
     descriptions: ['text', 'text within equation','descriptions'],
   },
   {
-    command: '\ {} \bmod{}',
-    example: '\ a \bmod b',
+    command: '{} \\bmod{}',
+    example: 'a \\bmod b',
     descriptions: ['mod', 'remainder','bmod'],
   },
     {
-    command: '\ {} \pmod{}',
-    example: '\ a \pmod b',
+    command: '{} \\pmod{}',
+    example: 'a \\pmod b',
     descriptions: ['mod', 'remainder','pmod'],
   },
     {
@@ -389,54 +402,93 @@ const CommandList = [
     example: '\\ldots',
     descriptions: ['dots','...','left','horizontal'],
   },
-   {
+  {
     command: '\\vdots',
     example: '\\vdots',
     descriptions: ['dots','...','down','vertical'],
   },
-   {
-    command: `\\begin{bmatrix} a_{11} & a_{12} & \ldots \\
-a_{21} & a_{22} & \ldots\\
-\vdots & \vdots & \ddots \end{bmatrix}`,
-    example: `\\begin{bmatrix} a_{11} & a_{12} & \ldots \\
-a_{21} & a_{22} & \ldots\\
-\vdots & \vdots & \ddots \end{bmatrix}`,
-    descriptions: ['bmatrix','matrix','list','array'],
-  },
-   {
-    command: `\\begin{pmatrix} a_{11} & a_{12} & \ldots \\
-a_{21} & a_{22} & \ldots\\
-\vdots & \vdots & \ddots \end{pmatrix}`,
-    example: `\\begin{pmatrix} a_{11} & a_{12} & \ldots \\
-a_{21} & a_{22} & \ldots\\
-\vdots & \vdots & \ddots \end{pmatrix}`,
-    descriptions: ['pmatrix','matrix','list','array'],
+  {
+    command: `\\begin{bmatrix}
+    a & b \\\\
+    c & d
+    \\end{bmatrix}`,
+    example: `\\begin{bmatrix}
+    a & b \\\\
+    c & d
+    \\end{bmatrix}`,
+    descriptions: ['matrix','bmatrix','matrix with brackets'],
+    variants: [
+      {
+        command: `\\left[\\begin{array}{}
+        a & b \\\\
+        c & d
+        \\end{array}\\right]`,
+        example: `\\left[\\begin{array}{}
+        a & b \\\\
+        c & d
+        \\end{array}\\right]`,
+      },
+    ],
   },
   {
-    command: '\\lfoor {} \rfloor',
-    example: '\\lfoor {\frac{a}{b}} \rfloor',
-    descriptions: ['round','floor','down','reduce'],
+    command: `\\begin{pmatrix}
+    a & b \\\\
+    c & d
+    \\end{pmatrix}`,
+    example: `\\begin{pmatrix}
+    a & b \\\\
+    c & d
+    \\end{pmatrix}`,
+    descriptions: ['matrix','pmatrix','matrix with parenthesis'],
+    variants: [
+      {
+        command: `\\left(\\begin{array}{}
+        a & b \\\\
+        c & d
+        \\end{array}\\right)`,
+        example: `\\left(\\begin{array}{}
+        a & b \\\\
+        c & d
+        \\end{array}\\right)`,
+      },
+    ],
+  },
+  {
+    command: `\\left[\\begin{array}{cc|c}
+    1 & 0 & 12 \\\\
+    0 & 1 & 13
+    \\end{array}\\right]`,
+    example: `\\left[\\begin{array}{cc|c}
+      1 & 0 & 12 \\\\
+      0 & 1 & 13
+      \\end{array}\\right]`,
+    descriptions: ['augmented matrix'],
+  },
+  {
+    command: '\\lfloor {} \\rfloor',
+    example: '\\lfloor {\\frac{a}{b}} \\rfloor',
+    descriptions: ['round down','floor'],
   },
     {
-    command: '\\lciel {} \rciel',
-    example: '\\lciel {\frac{a}{b}} \rciel',
-    descriptions: ['round','floor','down','reduce'],
+    command: '\\lceil {} \\rceil',
+    example: '\\lceil {\\frac{a}{b}} \\rceil',
+    descriptions: ['round up','ceil'],
   },
-   {
-    command: `f(n) = \left\{\begin{array}{cl}
-              {} & \textrm{if } {}\\
-              {} & \textrm{if } {}\\
-              {} &\textrm{if } {}
-              \end{array}
-              \right. %empty place holder right brace`,
-    example: `f(n) = \left\\begin{array}{cl}
-                0 & \textrm{if } n = 0\\
-                1 & \textrm{if } n = 1\\
-                f(n-1) + f(n-2) &\textrm{if } n\geq 2
-                \end{array}
-                 \right. %empty place holder right brace`,
-    descriptions: ['compound function','function','piecewise functions'],
-  },
+  // {
+  //   command: `f(n) = \left\{\begin{array}{cl}
+  //             {} & \textrm{if } {}\\
+  //             {} & \textrm{if } {}\\
+  //             {} &\textrm{if } {}
+  //             \end{array}
+  //             \right. %empty place holder right brace`,
+  //   example: `f(n) = \left\\begin{array}{cl}
+  //               0 & \textrm{if } n = 0\\
+  //               1 & \textrm{if } n = 1\\
+  //               f(n-1) + f(n-2) &\textrm{if } n\geq 2
+  //               \end{array}
+  //                \right. %empty place holder right brace`,
+  //   descriptions: ['compound function','function','piecewise functions'],
+  // },
 ]
 
 const greekAlphabet = [

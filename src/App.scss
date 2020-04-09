@@ -40,11 +40,15 @@
 .renderedlatex {
   font-size: 2em;
 }
+code {
+  white-space: pre-line;
+}
 
 .hint {
   background-color: #ccc;
   padding: 5px;
   border-radius: 25px;
+  white-space: nowrap;
 }
 
 .header {
@@ -73,4 +77,15 @@
   bottom: 1em;
   right: 1em;
   opacity: 0.6;
+}
+
+#loadMoreGutter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+}
+
+.MuiCircularProgress-colorPrimary {
+  color: #888888 !important;
 }
